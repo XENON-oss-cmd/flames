@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FLAMES</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6b6b,
+            #6c5ce7
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+
+    padding: 30px;
+    border-radius: 20px;
+
+    width: 350px;
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #6c5ce7;
+}
+
+input {
+    width: 90%;
+
+    padding: 12px;
+    margin: 10px 0;
+
+    border: 2px solid #ddd;
+    border-radius: 10px;
+
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6c5ce7;
+    color: white;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5944d8;
+}
+
+#result {
+    margin-top: 20px;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* GIF */
+
+#resultGif {
+    width: 250px;
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+    margin-top: 15px;
+
+    display: none;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>🔥 FLAMES Calculator 🔥</h1>
+
+    <input
+        type="text"
+        id="name1"
+        placeholder="Enter First Name"
+    >
+
+    <input
+        type="text"
+        id="name2"
+        placeholder="Enter Second Name"
+    >
+
+    <button onclick="calculateFlames()">
+        Check FLAMES
+    </button>
+
+    <div id="result"></div>
+
+    <img
+        id="resultGif"
+        alt="FLAMES result GIF"
+    >
+
+</div>
+
+
+<script>
+
+function calculateFlames() {
+
+    let name1 =
+        document
+        .getElementById("name1")
+        .value
+        .toLowerCase()
+        .replace(/\s/g, '');
+
+    let name2 =
+        document
+        .getElementById("name2")
+        .value
+        .toLowerCase()
+        .replace(/\s/g, '');
+
+
+    // Check if names are entered
+
+    if (name1 === "" || name2 === "") {
+
+        alert("Enter both names!");
+
+        return;
+    }
+
+
+    let arr1 = name1.split('');
+    let arr2 = name2.split('');
+
+
+    /* =========================
+       REMOVE COMMON LETTERS
+    ========================= */
+
+    for (let i = 0; i < arr1.length; i++) {
+
+        let index = arr2.indexOf(arr1[i]);
+
+        if (index !== -1) {
+
+            arr1[i] = '*';
+            arr2[index] = '*';
+        }
+    }
+
+
+    /* =========================
+       COUNT REMAINING LETTERS
+    ========================= */
+
+    let count = 0;
+
+    arr1.forEach(ch => {
+
+        if (ch !== '*') {
+            count++;
+        }
+
+    });
+
+    arr2.forEach(ch => {
+
+        if (ch !== '*') {
+            count++;
+        }
+
+    });
+
+
+    /* =========================
+       FLAMES
+    ========================= */
+
+    let flames = [
+        "F",
+        "L",
+        "A",
+        "M",
+        "E",
+        "S"
+    ];
+
+
+    while (flames.length > 1) {
+
+        let pos =
+            (count % flames.length) - 1;
+
+
+        if (pos >= 0) {
+
+            flames =
+                flames
+                .slice(pos + 1)
+                .concat(
+                    flames.slice(0, pos)
+                );
+
+        }
+
+        else {
+
+            flames.pop();
+
+        }
+    }
+
+
+    /* =========================
+       MEANINGS
+    ========================= */
+
+    let meaning = {
+
+        F: "👫 Friends",
+        L: "❤️ Love",
+        A: "😊 Affection",
+        M: "💍 Marriage",
+        E: "😈 Enemies",
+        S: "🤝 Siblings"
+
+    };
+
+
+    /* =========================
+       GIF FILES
+       
+       IMPORTANT:
+       The GIF files are in the
+       SAME folder as flames.html
+    ========================= */
+
+    let gifs = {
+
+        F: "friends.gif",
+        L: "love.gif",
+        A: "affection.gif",
+        M: "marriage.gif",
+        E: "enemies.gif",
+        S: "siblings.gif"
+
+    };
+
+
+    /* =========================
+       SHOW RESULT
+    ========================= */
+
+    document
+        .getElementById("result")
+        .innerHTML = meaning[flames[0]];
+
+
+    /* =========================
+       SHOW GIF
+    ========================= */
+
+    let resultGif =
+        document.getElementById("resultGif");
+
+
+    resultGif.src =
+        gifs[flames[0]];
+
+
+    resultGif.style.display =
+        "block";
+
+}
+
+</script>
+
+</body>
+
+</html>
