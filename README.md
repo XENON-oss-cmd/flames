@@ -6,7 +6,7 @@
 
 ## Basic Details
 
-### Team Name: Athul M Aji
+### Team Name: Terminal Velocity
 
 ### Team Members
 
