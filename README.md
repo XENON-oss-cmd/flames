@@ -55,7 +55,7 @@ No installation or external libraries are required.
 Clone the repository:
 
 ```bash
-git clone https://github.com/[username]/[repository-name].git
+git clone (https://github.com/XENON-oss-cmd/flames).git
 ```
 
 Or simply download the project files.
