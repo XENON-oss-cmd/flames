@@ -10,9 +10,9 @@
 
 ### Team Members
 
-* Team Lead: [Your Name] - [College]
+* Team Lead: Athul M Aji - Saintgits College of Applied Sciences
 * Member 2: Abhishek A - Saintgits College of Applied Sciences
-* Member 3: [Name] - [College]
+
 
 ### Project Description
 
